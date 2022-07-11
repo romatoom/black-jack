@@ -1,8 +1,8 @@
-require_relative "../modules/card_info"
+require_relative "../modules/game_info"
 
 # игральная карта
 class Card
-  include CardInfo
+  include GameInfo
 
   def initialize(suit, value)
     @suit, @value = suit, value
@@ -13,7 +13,7 @@ class Card
     hidden
   end
 
-  def showed?
+  def visibled?
     !hidden
   end
 
@@ -21,7 +21,7 @@ class Card
     self.hidden = true
   end
 
-  def show
+  def make_visible
     self.hidden = false
   end
 

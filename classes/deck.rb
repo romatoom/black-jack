@@ -1,5 +1,5 @@
 require_relative "card"
-require_relative "../modules/card_info"
+require_relative "../modules/game_info"
 
 # колода карт
 class Deck
@@ -7,8 +7,9 @@ class Deck
 
   def initialize
     @cards = []
-    CardInfo::SUITS.each do |suit|
-      CardInfo::VALUES.each do |value|
+
+    GameInfo::SUITS.each do |suit|
+      GameInfo::VALUES.each do |value|
         @cards << Card.new(suit, value)
       end
     end
@@ -19,19 +20,19 @@ class Deck
     cards.shuffle!
   end
 
-  def pull
-    cards.pull
+  def pop
+    cards.pop
   end
 
   def push(card)
     cards << card
   end
 
-  def show
-    cards.each do |card|
-      puts card.image
-    end
-  end
+  # def show
+  #   cards.each do |card|
+  #     puts card.image
+  #   end
+  # end
 
   private
 
