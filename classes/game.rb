@@ -23,14 +23,18 @@ class Game
       @deck = Deck.new
       @bank = Bank.new
 
-      loop do
+      continue_game = true
+      while continue_game
         new_round
-        break if player.cash < MINIMUM_RATE || dealer.cash < MINIMUM_RATE
 
-        continue_game = input_value("Продолжить игру? Если согласны введите Y").downcase
-        break unless continue_game == 'y'
+        continue_game, reason = continue_game?
       end
+
+      reason =
+      print_bye_message(reason)
     end
+
+    private
 
     def new_round
       deck.snuffle
@@ -39,7 +43,7 @@ class Game
       2.times { dealer.take_card(deck) }
 
       round_end = false
-      
+
       visualize
 
       until round_end do
@@ -56,10 +60,25 @@ class Game
 
         round_end = true
       end
-
     end
 
-    private
+    def can_player_get_a_bet?
+      player.cash >= MINIMUM_RATE
+    end
+
+    def can_dealer_get_a_bet?
+      dealer.cash >= MINIMUM_RATE
+    end
+
+    def continue_game?
+      return [false, :player_no_cash] unless can_player_get_a_bet?
+      return [false, :dealer_no_cash] unless can_dealer_get_a_bet?
+
+      continue_game = input_value("Продолжить игру? Если согласны введите Y").downcase
+
+      return [false, :player_stop_game] unless continue_game == 'y'
+      [true, nil]
+    end
 
     attr_writer :player, :dealer, :deck, :bank
   end

@@ -21,12 +21,11 @@ class MemberOfGame
   end
 
   def return_cards(deck)
-    cards.each do |card|
+    while (cards.length.positive?) do
+      card = cards.pop
       card.hide
       deck.push(card)
     end
-
-    self.cards = []
   end
 
   def cash_up(summ)
@@ -35,6 +34,10 @@ class MemberOfGame
 
   def cash_down(summ)
     self.cash -= summ
+  end
+
+  def score
+    
   end
 
   private
