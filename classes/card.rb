@@ -4,6 +4,8 @@ require_relative "../modules/game_info"
 class Card
   include GameInfo
 
+  attr_reader :suit, :value
+
   def initialize(suit, value)
     @suit, @value = suit, value
     @hidden = true
@@ -33,5 +35,4 @@ class Card
   private
 
   attr_accessor :hidden
-  attr_reader :suit, :value
 end

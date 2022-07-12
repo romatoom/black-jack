@@ -5,4 +5,7 @@ module GameInfo
   PICTURE_CARDS = %w[J Q K].freeze
   MINIMUM_RATE = 10
   INITIAL_CASH = 100
+  WIN_SCORE = 21
+  MIN_VALUE_FOR_ACE = 1
+  MAX_VALUE_FOR_ACE = 11
 end

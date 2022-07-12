@@ -41,7 +41,9 @@ module HelperIO
     puts "На счету: #{member.cash}$"
 
     card_images = member.cards.empty? ? [] : member.cards.map(&:image)
+
     puts "Карты: #{card_images.join(" ")}"
+    puts "Очков: #{member.score}" if member.instance_of?(Player)
 
     puts "\n\n"
   end
