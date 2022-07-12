@@ -29,6 +29,7 @@ class Card
 
   def image
     return "🂠" if hidden?
+
     "#{value}#{suit}"
   end
 
